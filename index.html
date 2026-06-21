@@ -1211,7 +1211,7 @@
         }
 
         /* ============================
-           OPEN RECRUITMENT SECTION
+           OPEN RECRUITMENT SECTION - PERBAIKAN
         ============================ */
         #open-recruitment {
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
@@ -1248,45 +1248,64 @@
         .recruit-card {
             background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(8px);
-            padding: 2rem;
+            padding: 1.8rem 1.5rem;
             border-radius: 20px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.12);
             transition: transform 0.3s, box-shadow 0.3s;
+            font-family: 'Plus Jakarta Sans', sans-serif; /* PERBAIKAN */
         }
         .recruit-card:hover {
             transform: translateY(-6px);
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
         .recruit-card i {
-            font-size: 2.8rem;
+            font-size: 2.4rem;
             color: var(--accent-light);
+            margin-bottom: 0.25rem;
         }
         .recruit-card h3 {
-            margin: 1rem 0 0.5rem;
-            font-size: 1.2rem;
+            margin: 0.5rem 0 0.25rem;
+            font-size: 1.15rem;
             font-weight: 700;
+            font-family: 'Playfair Display', serif; /* PERBAIKAN */
+            letter-spacing: 0.02em;
         }
         .recruit-card ul {
             list-style: none;
             padding: 0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             opacity: 0.9;
             line-height: 2;
+            margin: 0.5rem 0 0.25rem;
+        }
+        .recruit-card ul li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .recruit-card ul li::before {
+            content: "•";
+            color: var(--accent-light);
+            font-weight: 700;
+            font-size: 1.2rem;
         }
         .recruit-card .deadline {
-            font-size: 1.8rem;
+            font-size: 1.5rem; /* PERBAIKAN: ukuran lebih kecil */
             font-weight: 800;
             color: var(--accent-light);
-            margin: 0.5rem 0;
+            margin: 0.4rem 0 0.2rem;
+            font-family: 'Playfair Display', serif;
         }
         .recruit-card p {
             opacity: 0.7;
             font-size: 0.9rem;
+            margin-top: 0.25rem;
         }
         .btn-recruit {
             display: inline-block;
-            margin-top: 1.2rem;
+            margin-top: 1rem;
             background: var(--accent);
             color: var(--primary);
             font-weight: 700;
@@ -1297,10 +1316,13 @@
             transition: 0.3s;
             font-size: 15px;
             text-decoration: none;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            box-shadow: 0 4px 14px rgba(232, 160, 32, 0.3);
         }
         .btn-recruit:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transform: scale(1.04);
+            background: var(--accent-light);
+            box-shadow: 0 8px 24px rgba(232, 160, 32, 0.4);
         }
 
         /* ============================
@@ -1928,7 +1950,7 @@
             <div class="nav-logo">
                 <img src="assets/images/logo-dpm.jpeg" alt="Logo DPM-KM">
             </div>
-            <div class="nav-name">DPM-KM Udinus <span>DPM-KM.github.io/dpmkmudinus</span></div>
+            <div class="nav-name">DPM-KM Udinus <span></div>
         </a>
         <ul class="nav-links">
     <li><a href="#open-recruitment">Oprec</a></li>
@@ -1985,7 +2007,7 @@
     </section>
 
     <!-- ============================
-    OPEN RECRUITMENT
+    OPEN RECRUITMENT - PERBAIKAN
     ============================ -->
     <section id="open-recruitment">
         <div class="bg-blob"></div>
@@ -2006,10 +2028,10 @@
                     <i class="fa-solid fa-users"></i>
                     <h3>Posisi Tersedia</h3>
                     <ul>
-                        <li>• Anggota Badan Legislasi</li>
-                        <li>• Anggota Badan Pengawasan</li>
-                        <li>• Anggota Badan Advokasi</li>
-                        <li>• Staf Media & Informasi</li>
+                        <li>Anggota Badan Legislasi</li>
+                        <li>Anggota Badan Pengawasan</li>
+                        <li>Anggota Badan Advokasi</li>
+                        <li>Staf Media & Informasi</li>
                     </ul>
                 </div>
 
@@ -2041,7 +2063,7 @@
                 <div>
                     <div class="about-img-box">
                         <img src="assets/images/jumbotron.jpeg" alt="Tentang DPM-KM Udinus" />
-                        <div class="about-tag">Udinus 2025/2026</div>
+                        <div class="about-tag">DPM-KM Udinus 2025/2026</div>
                     </div>
                 </div>
                 <div class="about-content">
@@ -2298,7 +2320,7 @@
                 <div class="gallery-item">
                     <img src="assets/images/utama.jpeg" alt="Utama">
                     <div class="gallery-overlay">
-                        <div class="gallery-caption"></div>
+                        <div class="gallery-caption">Anggota DPM-KM Udinus 2025/2026</div>
                     </div>
                 </div>
                 <div class="gallery-item">
