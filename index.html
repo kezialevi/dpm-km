@@ -1,1078 +1,2945 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DPM-KM Udinus | Dewan Perwakilan Mahasiswa – Keluarga Mahasiswa</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --primary: #1a3a5c; --primary-light: #2b5c96;
-      --accent: #e8a020; --accent-light: #f5c35a;
-      --surface: #f7f4ef; --white: #ffffff;
-      --text: #1a1a1a; --text-muted: #5a6272;
-      --border: #ddd7ce; --radius: 12px;
-      --shadow: 0 4px 24px rgba(0,0,0,0.08);
-    }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DPM-KM Udinus | Dewan Perwakilan Mahasiswa – Keluarga Mahasiswa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        :root {
+            --primary: #1a3a5c;
+            --primary-light: #2b5c96;
+            --accent: #e8a020;
+            --accent-light: #f5c35a;
+            --surface: #f7f4ef;
+            --white: #ffffff;
+            --text: #1a1a1a;
+            --text-muted: #5a6272;
+            --border: #ddd7ce;
+            --radius: 12px;
+            --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            line-height: 1.7;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 58, 92, 0.97);
+            backdrop-filter: blur(12px);
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .nav-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-gavel {
+            width: 100%;
+            max-width: 700px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .35)) drop-shadow(0 10px 20px rgba(0, 0, 0, .25));
+            will-change: transform;
+        }
+        .nav-name {
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 1.3;
+        }
+        .nav-name span {
+            display: block;
+            font-size: 11px;
+            font-weight: 300;
+            opacity: 0.7;
+            letter-spacing: 0.05em;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--accent-light);
+        }
+        .nav-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            padding: 0 28px;
+            border-radius: 999px;
+            background: var(--accent);
+            color: var(--primary) !important;
+            padding: 10px 24px;
+            margin-left: 4px;
+            border-radius: 999px;
+            font-weight: 600 !important;
+        }
+        .nav-cta:hover {
+            background: var(--accent-light) !important;
+        }
+        .nav-search-item {
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .nav-search {
+            width: 140px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0px 16px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .12);
+            transition: .3s ease;
+        }
+        .nav-search:hover,
+        .nav-search:focus-within {
+            border-color: rgba(232, 160, 32, .7);
+            background: rgba(255, 255, 255, .12);
+            width: 220px;
+        }
+        .nav-search input {
+            border: none;
+            outline: none;
+            background: none;
+            color: white;
+            width: 100px;
+            font-size: 14px;
+        }
+        .nav-search input::placeholder {
+            color: rgba(255, 255, 255, .7);
+        }
+        .nav-search i {
+            color: rgba(255, 255, 255, .75);
+            font-size: 15px;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            display: block;
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 68px;
+            left: 0;
+            right: 0;
+            background: var(--primary);
+            padding: 1.5rem 2rem;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 999;
+        }
+        .mobile-menu.open {
+            display: flex;
+        }
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        #hero {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(8, 25, 50, .80), rgba(8, 25, 50, .80)),
+                url("assets/images/jumbotron.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            padding: 100px 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(232, 160, 32, 0.15);
+            border: 1px solid rgba(232, 160, 32, 0.3);
+            color: var(--accent-light);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .hero-badge::before {
+            content: '●';
+            font-size: 8px;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 900;
+            color: white;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+        .hero-title em {
+            font-style: normal;
+            color: var(--accent-light);
+        }
+        .hero-desc {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 14px 28px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            transition: transform 0.2s, background 0.2s;
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+            transition: border-color 0.2s, background 0.2s;
+            display: inline-block;
+        }
+        .btn-outline:hover {
+            border-color: white;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-img {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
+        }
+        .hero-emblem {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .hero-emblem::before {
+            content: '';
+            position: absolute;
+            inset: 20px;
+            border-radius: 50%;
+            border: 1px solid rgba(232, 160, 32, 0.3);
+        }
+        .hero-emblem-inner {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.07);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .emblem-icon {
+            font-size: 56px;
+        }
+        .emblem-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--accent-light);
+            letter-spacing: 0.1em;
+        }
+        .emblem-sub {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.2em;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .stat-num {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-light);
+            line-height: 1;
+        }
+        .stat-lbl {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 4px;
+        }
+        section {
+            padding: 80px 2rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .section-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary-light);
+            margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .divider {
+            width: 48px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+            margin: 1rem auto 0;
+        }
+        #tentang {
+            background: var(--surface);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+        .about-img-box {
+            background: var(--primary);
+            border-radius: 20px;
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .about-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .about-img-placeholder {
+            font-size: 80px;
+            opacity: 0.3;
+        }
+        .about-tag {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+            line-height: 1.25;
+        }
+        .about-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            font-size: 15.5px;
+        }
+        .about-pillars {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin-top: 1.5rem;
+        }
+        .pillar {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .pillar-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--primary);
+            color: #e8a020;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .pillar-icon i {
+            background: linear-gradient(135deg, #f7d57a, #e8a020);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+        .pillar-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--primary);
+        }
+        .pillar-desc {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        #visimisi {
+            background: white;
+        }
+        .vm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .vm-card {
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .vm-card.visi {
+            background: var(--primary);
+        }
+        .vm-card.misi {
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+        .vm-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .vm-card.visi .vm-label {
+            color: var(--accent-light);
+        }
+        .vm-card.misi .vm-label {
+            color: var(--primary-light);
+        }
+        .vm-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+        .vm-card.visi h3 {
+            color: white;
+        }
+        .vm-card.misi h3 {
+            color: var(--primary);
+        }
+        .vm-quote {
+            font-size: 15px;
+            line-height: 1.8;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .misi-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        .misi-list li {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .misi-list li:last-child {
+            border-bottom: none;
+        }
+        .misi-list li::before {
+            content: '◆';
+            color: var(--accent);
+            font-size: 9px;
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+        #struktur {
+            background: var(--surface);
+        }
+        .org-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .org-level {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .level-2 .org-card,
+        .level-3 .org-card {
+            width: 200px;
+            min-height: 150px;
+        }
+        .org-card.top {
+            width: 220px;
+            min-height: 150px;
+        }
+        .org-card {
+            background: white;
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+        .org-line {
+            width: 2px;
+            height: 40px;
+            background: var(--border);
+        }
+        .org-card.top {
+            border-color: var(--accent);
+            border-width: 2px;
+            min-width: 180px;
+            position: relative;
+        }
+        .org-card.top::before {
+            content: '★';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--primary);
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 100px;
+        }
+        .org-card.mid {
+            border-color: var(--accent);
+        }
+        .org-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin: 0 auto 8px;
+        }
+        .org-card.top .org-avatar {
+            background: var(--accent);
+            color: var(--primary);
+            width: 54px;
+            height: 54px;
+        }
+        .org-name {
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--primary);
+            line-height: 1.3;
+        }
+        .org-role {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+        .org-hline {
+            width: 70%;
+            height: 2px;
+            background: var(--border);
+            margin: 0 auto;
+        }
+        #proker {
+            background: white;
+        }
+        .proker-tabs {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        .tab-btn {
+            padding: 8px 20px;
+            border-radius: 100px;
+            border: 1.5px solid var(--border);
+            background: white;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .tab-btn:hover:not(.active) {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .proker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .proker-card {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .proker-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+        .proker-header {
+            padding: 20px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .proker-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+        .proker-name {
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .proker-komisi {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+        .proker-body {
+            padding: 18px 20px;
+        }
+        .proker-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+        .proker-meta {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .proker-badge {
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 11px;
+        }
+        .badge-legislasi {
+            background: #e8f0fd;
+            color: #1a4fa8;
+        }
+        .badge-pengawasan {
+            background: #fdf3e8;
+            color: #a85e1a;
+        }
+        .badge-advokasi {
+            background: #e8f8e8;
+            color: #1a6e2a;
+        }
+        #berita {
+            background: var(--surface);
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        .news-featured {
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            box-shadow: var(--shadow);
+        }
+        .news-featured-img {
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+        .news-featured-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .news-featured-img .news-tag {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--accent);
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 100px;
+            text-transform: uppercase;
+        }
+        .news-featured-body {
+            padding: 24px;
+        }
+        .news-featured-body .news-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .news-featured-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+        .news-featured-body p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+        .news-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .news-small {
+            background: white;
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+        }
+        .news-small-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .news-small h4 {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--primary);
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+        .news-small .news-date {
+            font-size: 11.5px;
+            color: var(--text-muted);
+        }
+        .news-all-btn {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+        .news-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .news-link:hover .news-featured,
+        .news-link:hover .news-small {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+            transition: .3s ease;
+            cursor: pointer;
+        }
+        .news-small {
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        .news-featured {
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        #galeri {
+            background: white;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .3s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-item:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+            aspect-ratio: auto;
+            min-height: 280px;
+            font-size: 72px;
+        }
+        .gallery-item:nth-child(odd):not(:first-child) {
+            background: #1e4a7c;
+        }
+        .gallery-item:nth-child(even):not(:first-child) {
+            background: #163055;
+        }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, .75), rgba(0, 0, 0, .1));
+            display: flex;
+            align-items: flex-end;
+            padding: 16px;
+            opacity: 0;
+            transition: .3s;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-caption {
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        #aspirasi {
+            background: var(--surface);
+        }
+        .aspirasi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .aspirasi-form {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        .aspirasi-form h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .aspirasi-form>p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            background: var(--surface);
+            color: var(--text);
+            transition: border-color 0.2s;
+            outline: none;
+        }
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--primary-light);
+            background: white;
+        }
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .form-submit {
+            width: 100%;
+            padding: 13px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .form-submit:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .contact-info>p {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            color: #f7f4ef
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: white;
+            transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+        }
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .12);
+            border-color: rgba(43, 92, 150, .3);
+        }
+        .contact-item-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+            transition: .3s ease;
+        }
+        .contact-item-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--primary);
+        }
+        .contact-item-val {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .contact-item-val a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: .3s;
+        }
+        .contact-link {
+            display: flex;
+            text-decoration: none;
+            color: inherit;
+            transition: .3s ease;
+        }
+        .social-row {
+            display: flex;
+            gap: 14px;
+        }
+        .social-btn {
+            width: 52px;
+            height: 52px;
+            border: 1.5px solid rgba(23, 28, 76, 0.944);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #163055;
+            text-decoration: none;
+            background: transparent;
+            transition: .3s ease;
+        }
+        .social-btn i {
+            font-size: 22px;
+        }
+        .social-btn:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, .1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+        }
+        footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.75);
+            padding: 4rem 2rem 2rem;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.8;
+            margin-top: 1rem;
+        }
+        .footer-col h4 {
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 1rem;
+        }
+        .footer-col a {
+            display: block;
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            padding: 3px 0;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: var(--accent-light);
+        }
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .footer-bottom a {
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #1a6e2a;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(80px);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+            z-index: 9999;
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(26,58,92,0.97); backdrop-filter: blur(12px); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 68px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .nav-logo{
-    width:44px;
-    height:44px;
-    border-radius:50%;
-    overflow:hidden;
-    background:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-}
+        /* ============================
+           OPEN RECRUITMENT SECTION
+        ============================ */
+        #open-recruitment {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 60px 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        #open-recruitment .bg-blob {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        #open-recruitment .bg-blob:nth-child(1) {
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+        }
+        #open-recruitment .bg-blob:nth-child(2) {
+            bottom: -20%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+        }
+        .recruitment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .recruit-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(8px);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .recruit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+        .recruit-card i {
+            font-size: 2.8rem;
+            color: var(--accent-light);
+        }
+        .recruit-card h3 {
+            margin: 1rem 0 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .recruit-card ul {
+            list-style: none;
+            padding: 0;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 2;
+        }
+        .recruit-card .deadline {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-light);
+            margin: 0.5rem 0;
+        }
+        .recruit-card p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        .btn-recruit {
+            display: inline-block;
+            margin-top: 1.2rem;
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 700;
+            padding: 12px 32px;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 15px;
+            text-decoration: none;
+        }
+        .btn-recruit:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
 
-.nav-logo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
+        /* ============================
+           MODAL STYLES
+        ============================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-box {
+            background: white;
+            border-radius: 24px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+            animation: modalPop 0.3s ease;
+            position: relative;
+        }
+        @keyframes modalPop {
+            from {
+                opacity: 0;
+                transform: scale(0.92) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .modal-header {
+            padding: 18px 24px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .modal-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin: 0;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0 8px;
+            opacity: 0.7;
+            transition: 0.2s;
+        }
+        .modal-close:hover {
+            opacity: 1;
+            transform: rotate(90deg);
+        }
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            max-height: calc(90vh - 80px);
+        }
+        .modal-body iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 12px;
+        }
+        @media (max-width: 600px) {
+            .modal-body iframe {
+                height: 500px;
+            }
+        }
 
-.hero-gavel{
-    width:100%;
-    max-width:700px;
-    height:auto;
-    object-fit:contain;
+        /* ============================
+           ENHANCED CHATBOT STYLES
+        ============================ */
 
-    filter:
-      drop-shadow(0 20px 40px rgba(0,0,0,.35))
-      drop-shadow(0 10px 20px rgba(0,0,0,.25));
-    
-    will-change: transform;
-  }
+        /* Floating button */
+        .chatbot-btn {
+            position: fixed;
+            right: 28px;
+            bottom: 28px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(26, 58, 92, 0.35);
+            z-index: 9999;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+            border: none;
+            outline: none;
+            animation: pulse-glow 2.5s ease-in-out infinite;
+        }
+        .chatbot-btn:hover {
+            transform: scale(1.08) translateY(-4px);
+            box-shadow: 0 12px 40px rgba(26, 58, 92, 0.45);
+        }
+        .chatbot-btn .badge-dot {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 14px;
+            height: 14px;
+            background: #e74c3c;
+            border-radius: 50%;
+            border: 2px solid white;
+            animation: pulse-dot 1.8s ease-in-out infinite;
+        }
 
-    .nav-name { color: white; font-weight: 600; font-size: 15px; line-height: 1.3; }
-    .nav-name span { display: block; font-size: 11px; font-weight: 300; opacity: 0.7; letter-spacing: 0.05em; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent-light); }
-    .nav-cta { background: var(--accent); color: var(--primary) !important; padding: 8px 20px; border-radius: 100px; font-weight: 600 !important; }
-    .nav-cta:hover { background: var(--accent-light) !important; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-    .hamburger span { width: 24px; height: 2px; background: white; border-radius: 2px; display: block; }
-    .mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: var(--primary); padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; z-index: 999; }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { color: white; text-decoration: none; font-size: 15px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        @keyframes pulse-glow {
+            0%,
+            100% {
+                box-shadow: 0 8px 30px rgba(26, 58, 92, 0.35);
+            }
+            50% {
+                box-shadow: 0 8px 50px rgba(26, 58, 92, 0.55), 0 0 0 8px rgba(26, 58, 92, 0.08);
+            }
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
 
-    #hero{
-    min-height:100vh;
+        /* Chat panel */
+        .chatbot-box {
+            position: fixed;
+            right: 28px;
+            bottom: 104px;
+            width: 380px;
+            max-width: calc(100vw - 56px);
+            height: 520px;
+            max-height: calc(100vh - 160px);
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+            display: none;
+            z-index: 9999;
+            flex-direction: column;
+            animation: slide-up 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .chatbot-box.open {
+            display: flex;
+        }
 
-    background:
-        linear-gradient(
-            rgba(8,25,50,.80),
-            rgba(8,25,50,.80)
-        ),
-        url("assets/images/jumbotron.jpeg");
+        @keyframes slide-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
 
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
+        /* Chat header */
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+            user-select: none;
+        }
+        .chat-header .chat-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            position: relative;
+        }
+        .chat-header .chat-avatar .status-dot {
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 13px;
+            height: 13px;
+            background: #2ecc71;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+        }
+        .chat-header .chat-info {
+            flex: 1;
+        }
+        .chat-header .chat-info .chat-name {
+            font-weight: 700;
+            font-size: 15px;
+            line-height: 1.2;
+        }
+        .chat-header .chat-info .chat-status {
+            font-size: 12px;
+            opacity: 0.75;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .chat-header .chat-info .chat-status .status-indicator {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #2ecc71;
+            display: inline-block;
+            animation: pulse-dot 1.8s ease-in-out infinite;
+        }
+        .chat-header .chat-close {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .chat-header .chat-close:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+        }
 
-    display:flex;
-    align-items:center;
-    padding:100px 2rem 4rem;
-    position:relative;
-    overflow:hidden;
-}
-    #hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px; border-radius: 50%; background: rgba(255,255,255,0.03); }
-    .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 1; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(232,160,32,0.15); border: 1px solid rgba(232,160,32,0.3); color: var(--accent-light); font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 100px; margin-bottom: 1.5rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .hero-badge::before { content: '●'; font-size: 8px; }
-    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem,5vw,3.8rem); font-weight: 900; color: white; line-height: 1.15; margin-bottom: 1.5rem; }
-    .hero-title em { font-style: normal; color: var(--accent-light); }
-    .hero-desc { color: rgba(255,255,255,0.75); font-size: 17px; line-height: 1.8; margin-bottom: 2.5rem; }
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary { background: var(--accent); color: var(--primary); padding: 14px 28px; border-radius: 100px; font-weight: 700; font-size: 15px; text-decoration: none; transition: transform 0.2s, background 0.2s; display: inline-block; }
-    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
-    .btn-outline { background: transparent; color: white; padding: 14px 28px; border-radius: 100px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1.5px solid rgba(255,255,255,0.4); transition: border-color 0.2s, background 0.2s; display: inline-block; }
-    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.05); }
-    .hero-visual { display: flex; justify-content: center; align-items: center; }
-    .hero-img { width: 320px; height: 320px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(255,255,255,0.2); box-shadow: 0 8px 40px rgba(0,0,0,0.3); }
-    .hero-emblem { width: 280px; height: 280px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; position: relative; }
-    .hero-emblem::before { content: ''; position: absolute; inset: 20px; border-radius: 50%; border: 1px solid rgba(232,160,32,0.3); }
-    .hero-emblem-inner { width: 180px; height: 180px; border-radius: 50%; background: rgba(255,255,255,0.07); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
-    .emblem-icon { font-size: 56px; }
-    .emblem-text { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; color: var(--accent-light); letter-spacing: 0.1em; }
-    .emblem-sub { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.2em; }
-    .hero-stats { display: flex; gap: 2rem; margin-top: 3rem; }
-    .stat-num { font-size: 2rem; font-weight: 700; color: var(--accent-light); line-height: 1; }
-    .stat-lbl { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+        /* Chat body */
+        .chat-body {
+            flex: 1;
+            padding: 18px 20px 12px;
+            overflow-y: auto;
+            background: #f5f3f0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .chat-body::-webkit-scrollbar {
+            width: 4px;
+        }
+        .chat-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .chat-body::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+        }
 
-    section { padding: 80px 2rem; }
-    .container { max-width: 1100px; margin: 0 auto; width: 100%; }
-    .section-header { text-align: center; margin-bottom: 3.5rem; }
-    .section-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary-light); margin-bottom: 0.75rem; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,4vw,2.6rem); font-weight: 900; color: var(--primary); line-height: 1.2; margin-bottom: 1rem; }
-    .section-desc { color: var(--text-muted); font-size: 16px; max-width: 600px; margin: 0 auto; }
-    .divider { width: 48px; height: 3px; background: var(--accent); border-radius: 2px; margin: 1rem auto 0; }
+        /* Message bubbles */
+        .message {
+            max-width: 82%;
+            padding: 10px 15px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+            position: relative;
+            animation: msg-in 0.35s ease;
+            word-wrap: break-word;
+        }
+        .message .msg-time {
+            font-size: 10px;
+            opacity: 0.5;
+            margin-top: 4px;
+            display: block;
+            text-align: right;
+            letter-spacing: 0.02em;
+        }
 
-    #tentang { background: var(--surface); }
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-    .about-img-box { background: var(--primary); border-radius: 20px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
-    .about-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .about-img-placeholder { font-size: 80px; opacity: 0.3; }
-    .about-tag { position: absolute; bottom: 24px; left: 24px; background: var(--accent); color: var(--primary); padding: 8px 16px; border-radius: 100px; font-size: 13px; font-weight: 700; }
-    .about-content h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--primary); margin-bottom: 1.25rem; line-height: 1.25; }
-    .about-content p { color: var(--text-muted); margin-bottom: 1.25rem; font-size: 15.5px; }
-    .about-pillars { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 1.5rem; }
-    .pillar { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; display: flex; align-items: flex-start; gap: 12px; }
-    .pillar-icon{
-    width:48px;
-    height:48px;
-    border-radius:12px;
-    background:var(--primary);
-    color:#e8a020;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:20px;
-    flex-shrink:0;
-}   
-    .pillar-icon i{
-    background: linear-gradient(
-        135deg,
-        #f7d57a,
-        #e8a020
-    );
+        @keyframes msg-in {
+            from {
+                opacity: 0;
+                transform: translateY(12px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
 
-    background-clip:text;
-    -webkit-background-clip:text;
+        .message.bot {
+            align-self: flex-start;
+            background: white;
+            color: var(--text);
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+        }
+        .message.bot .msg-time {
+            color: var(--text-muted);
+        }
+        .message.user {
+            align-self: flex-end;
+            background: var(--primary);
+            color: white;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 2px 8px rgba(26, 58, 92, 0.15);
+        }
+        .message.user .msg-time {
+            color: rgba(255, 255, 255, 0.6);
+        }
 
-    color:transparent;
-    -webkit-text-fill-color:transparent;
-}
-    .pillar-title { font-weight: 600; font-size: 14px; color: var(--primary); }
-    .pillar-desc { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
+        /* Typing indicator */
+        .typing-indicator {
+            align-self: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 10px 16px;
+            background: white;
+            border-radius: 16px;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            animation: msg-in 0.35s ease;
+        }
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: var(--text-muted);
+            border-radius: 50%;
+            display: inline-block;
+            animation: typing-bounce 1.2s ease-in-out infinite;
+        }
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
 
-    #visimisi { background: white; }
-    .vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .vm-card { border-radius: 20px; padding: 2.5rem; position: relative; overflow: hidden; }
-    .vm-card.visi { background: var(--primary); }
-    .vm-card.misi { background: var(--surface); border: 1px solid var(--border); }
-    .vm-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
-    .vm-card.visi .vm-label { color: var(--accent-light); }
-    .vm-card.misi .vm-label { color: var(--primary-light); }
-    .vm-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; line-height: 1.4; margin-bottom: 1rem; }
-    .vm-card.visi h3 { color: white; }
-    .vm-card.misi h3 { color: var(--primary); }
-    .vm-quote { font-size: 15px; line-height: 1.8; font-style: italic; color: rgba(255,255,255,0.8); }
-    .misi-list { list-style: none; margin-top: 1rem; }
-    .misi-list li { font-size: 14.5px; color: var(--text-muted); padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
-    .misi-list li:last-child { border-bottom: none; }
-    .misi-list li::before { content: '◆'; color: var(--accent); font-size: 9px; flex-shrink: 0; margin-top: 6px; }
+        @keyframes typing-bounce {
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.3;
+            }
+            30% {
+                transform: translateY(-8px);
+                opacity: 1;
+            }
+        }
 
-    #struktur { background: var(--surface); }
-    .org-wrap{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:10px;
-}
+        /* Quick reply chips */
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 4px 0 8px;
+            align-self: flex-start;
+            animation: msg-in 0.35s ease;
+        }
+        .quick-replies .chip {
+            padding: 6px 16px;
+            border-radius: 20px;
+            border: 1.5px solid var(--border);
+            background: white;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .quick-replies .chip:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 58, 92, 0.15);
+        }
+        .quick-replies .chip:active {
+            transform: scale(0.96);
+        }
 
-.org-level{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
-}
+        /* Chat input area */
+        .chat-footer {
+            padding: 12px 16px 14px;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            background: white;
+            flex-shrink: 0;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+        }
+        .chat-footer .input-wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 4px 6px 4px 16px;
+            border: 1.5px solid transparent;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+        .chat-footer .input-wrap:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 58, 92, 0.08);
+            background: white;
+        }
+        .chat-footer .input-wrap input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 8px 0;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--text);
+            min-height: 36px;
+        }
+        .chat-footer .input-wrap input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.6;
+        }
+        .chat-footer .input-wrap .emoji-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 50%;
+            transition: background 0.2s, color 0.2s;
+        }
+        .chat-footer .input-wrap .emoji-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--primary);
+        }
+        .chat-footer .send-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 14px rgba(26, 58, 92, 0.25);
+        }
+        .chat-footer .send-btn:hover {
+            transform: scale(1.06) translateY(-2px);
+            box-shadow: 0 6px 20px rgba(26, 58, 92, 0.35);
+        }
+        .chat-footer .send-btn:active {
+            transform: scale(0.92);
+        }
+        .chat-footer .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
 
-.level-2 .org-card,
-.level-3 .org-card{
-    width:200px;
-    min-height:150px;
-}
+        /* ============================
+           RESPONSIVE
+        ============================ */
 
-.org-card.top{
-    width:220px;
-    min-height:150px;
-}
+        @media (max-width: 900px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+            }
+            .hero-visual {
+                display: none;
+            }
+            .about-grid,
+            .vm-grid,
+            .aspirasi-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .gallery-item:first-child {
+                grid-column: span 1;
+                grid-row: span 1;
+                min-height: auto;
+                font-size: 36px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .about-pillars {
+                grid-template-columns: 1fr !important;
+            }
+            .recruitment-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
 
-.org-card{
-    background:white;
-    border:1.5px solid var(--border);
-    border-radius:16px;
-    padding:20px;
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    box-shadow:var(--shadow);
-}
+        @media (max-width: 600px) {
+            section {
+                padding: 60px 1.25rem;
+            }
+            nav {
+                padding: 0 1.25rem;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .recruitment-grid {
+                grid-template-columns: 1fr;
+            }
+            .chatbot-box {
+                right: 12px;
+                bottom: 88px;
+                width: calc(100vw - 24px);
+                height: calc(100vh - 160px);
+                max-height: 500px;
+                border-radius: 18px;
+            }
+            .chatbot-btn {
+                right: 16px;
+                bottom: 16px;
+                width: 56px;
+                height: 56px;
+                font-size: 22px;
+            }
+            .message {
+                max-width: 90%;
+                font-size: 13px;
+                padding: 8px 13px;
+            }
+            .quick-replies .chip {
+                font-size: 12px;
+                padding: 5px 14px;
+            }
+            .chat-header .chat-info .chat-name {
+                font-size: 14px;
+            }
+            .chat-footer {
+                padding: 10px 12px 12px;
+            }
+            .chat-footer .input-wrap {
+                padding: 2px 4px 2px 12px;
+            }
+            .chat-footer .input-wrap input {
+                font-size: 13px;
+                padding: 6px 0;
+                min-height: 32px;
+            }
+            .chat-footer .send-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 15px;
+            }
+            .modal-body iframe {
+                height: 400px;
+            }
+        }
 
-.org-line{
-    width:2px;
-    height:40px;
-    background:var(--border);
-}
-    .org-card.top { border-color: var(--accent); border-width: 2px; min-width: 180px; position: relative; }
-    .org-card.top::before { content: '★'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--primary); font-size: 12px; padding: 2px 8px; border-radius: 100px; }
-    .org-card.mid { border-color: var(--accent); }
-    .org-avatar { width: 46px; height: 46px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 18px; margin: 0 auto 8px; }
-    .org-card.top .org-avatar { background: var(--accent); color: var(--primary); width: 54px; height: 54px; }
-    .org-name { font-weight: 700; font-size: 13px; color: var(--primary); line-height: 1.3; }
-    .org-role { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
-    .org-hline { width: 70%; height: 2px; background: var(--border); margin: 0 auto; }
-
-    #proker { background: white; }
-    .proker-tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
-    .tab-btn { padding: 8px 20px; border-radius: 100px; border: 1.5px solid var(--border); background: white; color: var(--text-muted); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-    .tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
-    .tab-btn:hover:not(.active) { border-color: var(--primary); color: var(--primary); }
-    .proker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
-    .proker-card { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
-    .proker-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-    .proker-header { padding: 20px; background: var(--primary); display: flex; align-items: center; gap: 14px; }
-    .proker-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 22px; }
-    .proker-name { color: white; font-weight: 700; font-size: 15px; }
-    .proker-komisi { color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 2px; }
-    .proker-body { padding: 18px 20px; }
-    .proker-desc { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 14px; }
-    .proker-meta { display: flex; justify-content: flex-end; }
-    .proker-badge { padding: 4px 12px; border-radius: 100px; font-weight: 600; font-size: 11px; }
-    .badge-legislasi { background: #e8f0fd; color: #1a4fa8; }
-    .badge-pengawasan { background: #fdf3e8; color: #a85e1a; }
-    .badge-advokasi { background: #e8f8e8; color: #1a6e2a; }
-
-    #berita { background: var(--surface); }
-    .news-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
-    .news-featured { border-radius: 20px; overflow: hidden; background: white; box-shadow: var(--shadow); }
-    .news-featured-img { height: 240px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: flex; align-items: center; justify-content: center; font-size: 64px; position: relative; }
-    .news-featured-img .news-tag { position: absolute; top: 16px; left: 16px; background: var(--accent); color: var(--primary); font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 100px; text-transform: uppercase; }
-    .news-featured-body { padding: 24px; }
-    .news-featured-body .news-date { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
-    .news-featured-body h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 10px; line-height: 1.4; }
-    .news-featured-body p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
-    .news-sidebar { display: flex; flex-direction: column; gap: 1rem; }
-    .news-small { background: white; border-radius: 14px; padding: 18px; display: flex; gap: 14px; align-items: flex-start; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
-    .news-small-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--surface); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-    .news-small h4 { font-size: 13.5px; font-weight: 600; color: var(--primary); line-height: 1.4; margin-bottom: 4px; }
-    .news-small .news-date { font-size: 11.5px; color: var(--text-muted); }
-    .news-all-btn { text-align: center; margin-top: 2.5rem; }
-
-    #galeri { background: white; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
-    .gallery-item{
-    position:relative;
-    overflow:hidden;
-    border-radius:14px;
-}
-
-.gallery-item img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    transition:transform .3s ease;
-}
-
-.gallery-item:hover img{
-    transform:scale(1.08);
-}
-    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; min-height: 280px; font-size: 72px; }
-    .gallery-item:nth-child(odd):not(:first-child) { background: #1e4a7c; }
-    .gallery-item:nth-child(even):not(:first-child) { background: #163055; }
-    .gallery-overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        to top,
-        rgba(0,0,0,.75),
-        rgba(0,0,0,.1)
-    );
-    
-    display:flex;
-    align-items:flex-end;
-    padding:16px;
-
-    opacity:0;
-    transition:.3s;
-}
-
-.gallery-item:hover .gallery-overlay{
-    opacity:1;
-}
-    .gallery-caption { color: white; font-size: 13px; font-weight: 600; }
-
-    #aspirasi { background: var(--surface); }
-    .aspirasi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-    .aspirasi-form { background: white; border-radius: 20px; padding: 2.5rem; border: 1px solid var(--border); box-shadow: var(--shadow); }
-    .aspirasi-form h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--primary); margin-bottom: 0.5rem; }
-    .aspirasi-form > p { font-size: 14px; color: var(--text-muted); margin-bottom: 1.5rem; }
-    .form-group { margin-bottom: 1.2rem; }
-    .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
-    .form-input, .form-select, .form-textarea { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-family: inherit; font-size: 14px; background: var(--surface); color: var(--text); transition: border-color 0.2s; outline: none; }
-    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--primary-light); background: white; }
-    .form-textarea { resize: vertical; min-height: 120px; }
-    .form-submit { width: 100%; padding: 13px; background: var(--primary); color: white; border: none; border-radius: 100px; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; transition: background 0.2s, transform 0.15s; }
-    .form-submit:hover { background: var(--primary-light); transform: translateY(-2px); }
-    .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color:#f7f4ef (--primary); margin-bottom: 0.5rem; }
-    .contact-info > p { font-size: 15px; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8; }
-    .contact-list { display: flex; flex-direction: column; gap: 1rem; color:#f7f4ef}
-    .contact-item { display: flex; align-items: center; gap: 14px; padding: 16px 18px; border: 1px solid var(--border); border-radius: 14px; background: white; }
-    .contact-item-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-    .contact-item-title { font-weight: 600; font-size: 14px; color: var(--primary); }
-    .contact-item-val { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
-    .social-row{
-    display:flex;
-    gap:14px;
-}
-
-.social-btn{
-    width:52px;
-    height:52px;
-
-    border:1.5px solid rgba(23, 28, 76, 0.944);
-    border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:#163055;
-    text-decoration:none;
-
-    background:transparent;
-
-    transition:.3s ease;
-}
-
-.social-btn i{
-    font-size:22px;
-}
-
-.social-btn:hover{
-    transform:translateY(-4px);
-    background:rgba(255,255,255,.1);
-    box-shadow:0 8px 20px rgba(0,0,0,.25);
-}
-    footer { background: var(--primary); color: rgba(255,255,255,0.75); padding: 4rem 2rem 2rem; }
-    .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-    .footer-brand p { font-size: 14px; line-height: 1.8; margin-top: 1rem; }
-    .footer-col h4 { color: white; font-weight: 600; font-size: 14px; margin-bottom: 1rem; }
-    .footer-col a { display: block; font-size: 13.5px; color: rgba(255,255,255,0.6); text-decoration: none; padding: 3px 0; transition: color 0.2s; }
-    .footer-col a:hover { color: var(--accent-light); }
-    .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; font-size: 13px; flex-wrap: wrap; gap: 12px; }
-    .footer-bottom a { color: var(--accent-light); text-decoration: none; }
-    .toast { position: fixed; bottom: 2rem; right: 2rem; background: #1a6e2a; color: white; padding: 14px 22px; border-radius: 14px; font-size: 14px; font-weight: 600; box-shadow: 0 8px 24px rgba(0,0,0,0.15); transform: translateY(80px); opacity: 0; transition: transform 0.3s, opacity 0.3s; z-index: 9999; }
-    .toast.show { transform: translateY(0); opacity: 1; }
-
-    @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-visual { display: none; }
-      .about-grid, .vm-grid, .aspirasi-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .news-grid { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr 1fr; }
-      .gallery-grid { grid-template-columns: repeat(3,1fr); }
-      .gallery-item:first-child { grid-column: span 1; grid-row: span 1; min-height: auto; font-size: 36px; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .about-pillars { grid-template-columns: 1fr !important; }
-    }
-    @media (max-width: 600px) {
-      section { padding: 60px 1.25rem; }
-      nav { padding: 0 1.25rem; }
-      .footer-inner { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: repeat(2,1fr); }
-    }
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    .fade-up { animation: fadeUp 0.6s ease forwards; }
-    .fade-up-d1 { animation-delay: 0.1s; opacity: 0; }
-    .fade-up-d2 { animation-delay: 0.25s; opacity: 0; }
-    .fade-up-d3 { animation-delay: 0.4s; opacity: 0; }
-
-  </style>
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-up {
+            animation: fadeUp 0.6s ease forwards;
+        }
+        .fade-up-d1 {
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+        .fade-up-d2 {
+            animation-delay: 0.25s;
+            opacity: 0;
+        }
+        .fade-up-d3 {
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
 
-<nav>
-  <a href="#" class="nav-brand">
-    <div class="nav-logo">
-    <img src="assets/images/logo-dpm.jpeg" alt="Logo DPM-KM">
-</div>
-    <div class="nav-name">DPM-KM Udinus <span>DPM-KM.github.io/dpmkmudinus</span></div>
-  </a>
-  <ul class="nav-links">
+    <nav>
+        <a href="#" class="nav-brand">
+            <div class="nav-logo">
+                <img src="assets/images/logo-dpm.jpeg" alt="Logo DPM-KM">
+            </div>
+            <div class="nav-name">DPM-KM Udinus <span>DPM-KM.github.io/dpmkmudinus</span></div>
+        </a>
+        <ul class="nav-links">
+    <li><a href="#open-recruitment">Oprec</a></li>
     <li><a href="#tentang">Tentang</a></li>
     <li><a href="#struktur">Struktur</a></li>
     <li><a href="#proker">Program Kerja</a></li>
     <li><a href="#berita">Berita</a></li>
     <li><a href="#galeri">Galeri</a></li>
-    <li><a href="#aspirasi" class="nav-cta">Kirim Aspirasi</a></li>
-  </ul>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#tentang" onclick="toggleMenu()">Tentang</a>
-  <a href="#struktur" onclick="toggleMenu()">Struktur</a>
-  <a href="#proker" onclick="toggleMenu()">Program Kerja</a>
-  <a href="#berita" onclick="toggleMenu()">Berita</a>
-  <a href="#galeri" onclick="toggleMenu()">Galeri</a>
-  <a href="#aspirasi" onclick="toggleMenu()">Kirim Aspirasi</a>
-</div>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-badge fade-up fade-up-d1">Periode 2025 / 2026</div>
-      <h1 class="hero-title fade-up fade-up-d2">Suara Mahasiswa,<br /><em>Kekuatan</em> Bersama</h1>
-      <p class="hero-desc fade-up fade-up-d3">Dewan Perwakilan Mahasiswa – Keluarga Mahasiswa Udinus hadir sebagai wadah aspirasi, pengawas kebijakan, dan penggerak perubahan di lingkungan kampus.</p>
-      <div class="hero-btns fade-up fade-up-d3">
-        <a href="#aspirasi" class="btn-primary">Kirim Aspirasi</a>
-        <a href="#tentang" class="btn-outline">Pelajari Lebih Lanjut</a>
-      </div>
-      <div class="hero-stats fade-up fade-up-d3">
-        <div class="stat-item"><div class="stat-num">39</div><div class="stat-lbl">Anggota Aktif</div></div>
-        <div class="stat-item"><div class="stat-num">18</div><div class="stat-lbl">Program Kerja</div></div>
-        <div class="stat-item"><div class="stat-num">9</div><div class="stat-lbl">Bidang</div></div>
-      </div>
-    </div>
-    <div class="hero-visual">
-        <img
-          src="assets/images/gavel-dpm.png"
-          alt="Gavel DPM-KM"
-          class="hero-gavel hero-parallax">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TENTANG -->
-<section id="tentang">
-  <div class="container">
-    <div class="about-grid">
-      <div>
-        <div class="about-img-box">
-          <!-- Ganti "foto-tentang.jpg" dengan nama file foto kamu yang sudah diupload ke GitHub -->
-          <img src="assets/images/jumbotron.jpeg"
-     alt="Tentang DPM-KM Udinus" />
-          <div class="about-tag">Udinus 2025/2026</div>
-        </div>
-      </div>
-      <div class="about-content">
-        <h2>Siapa Kami?</h2>
-        <p>DPM-KM (Dewan Perwakilan Mahasiswa – Keluarga Mahasiswa) adalah lembaga legislatif tertinggi dalam struktur organisasi kemahasiswaan yang bertugas mewakili aspirasi seluruh mahasiswa.</p>
-        <p>Kami berkomitmen menjadi jembatan antara mahasiswa dan pihak institusi, memastikan setiap suara didengar dan setiap kebijakan berpihak pada kepentingan bersama.</p>
-        <div class="about-pillars">
-
-  <div class="pillar">
-    <div class="pillar-icon">
-      <i class="fa-solid fa-scale-balanced"></i>
-    </div>
-    <div>
-      <div class="pillar-title">Legislasi</div>
-      <div class="pillar-desc">Penyusunan regulasi kemahasiswaan</div>
-    </div>
-  </div>
-
-  <div class="pillar">
-    <div class="pillar-icon">
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </div>
-    <div>
-      <div class="pillar-title">Pengawasan</div>
-      <div class="pillar-desc">Monitoring kinerja organisasi</div>
-    </div>
-  </div>
-
-  <div class="pillar">
-    <div class="pillar-icon">
-      <i class="fa-solid fa-handshake"></i>
-    </div>
-    <div>
-      <div class="pillar-title">Advokasi</div>
-      <div class="pillar-desc">Pembelaan hak mahasiswa</div>
-    </div>
-  </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VISI MISI -->
-<section id="visimisi">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">Landasan Kami</div>
-      <h2 class="section-title">Visi &amp; Misi</h2>
-      <div class="divider"></div>
-    </div>
-    <div class="vm-grid">
-      <div class="vm-card visi">
-        <div class="vm-label">Visi</div>
-        <h3>Aspiratif, Inovatif, dan Proaktif untuk Kesejahteraan Mahasiswa</h3>
-        <p class="vm-quote">"Mewujudkan DPM KM Udinus sebagai lembaga legislatif yang aspiratif, inovatif, dan proaktif untuk kesejahteraan mahasiswa."</p>
-      </div>
-      <div class="vm-card misi">
-        <div class="vm-label">Misi</div>
-        <h3>Langkah Nyata Kami</h3>
-        <ul class="misi-list">
-          <li>Mengoptimalkan fungsi dan peran aspirasi, pengawasan, serta legislasi yang berpihak pada kepentingan mahasiswa.</li>
-          <li>Menciptakan ruang dialog yang aspiratif untuk menggali permasalahan mahasiswa.</li>
-          <li>Menguatkan sinergi antar ormawa baik di internal maupun eksternal kampus.</li>
-          <li>Membangun DPM KM yang progresif dan tanggung jawab dengan mengutamakan nilai kekeluargaan.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STRUKTUR -->
-<section id="struktur">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">Pengurus</div>
-      <h2 class="section-title">Struktur Organisasi</h2>
-      <p class="section-desc">Pengurus DPM-KM periode 2025/2026 yang berkomitmen melayani seluruh mahasiswa.</p>
-      <div class="divider"></div>
-    </div>
-    <div class="org-wrap">
-
-    <!-- LEVEL 1 -->
-    <div class="org-card top">
-    <div class="org-avatar">
-        <i class="fa-solid fa-gavel"></i>
-    </div>
-    <div class="org-name">Ketua Umum</div>
-    <div class="org-role">DPM-KM Udinus</div>
-</div>
-
-    <div class="org-line"></div>
-
-    <!-- LEVEL 2 -->
-<div class="org-level level-2">
-
-    <div class="org-card">
-        <div class="org-avatar">
-            <i class="fa-solid fa-file-lines"></i>
-        </div>
-        <div class="org-name">Sekretaris Parlemen</div>
-        <div class="org-role">Kesekretariatan</div>
-    </div>
-
-    <div class="org-card">
-        <div class="org-avatar">
-            <i class="fa-solid fa-bullhorn"></i>
-        </div>
-        <div class="org-name">Divisi Humas &amp; Pengembangan</div>
-        <div class="org-role">Humas &amp; SDM</div>
-    </div>
-
-    <div class="org-card">
-        <div class="org-avatar">
-            <i class="fa-solid fa-sack-dollar"></i>
-        </div>
-        <div class="org-name">Bendahara Parlemen</div>
-        <div class="org-role">Keuangan</div>
-    </div>
-
-</div>
-
-    <div class="org-line"></div>
-
-    <!-- LEVEL 3 -->
-<div class="org-level level-3">
-
-    <div class="org-card">
-        <div class="org-avatar">
-            <i class="fa-solid fa-satellite-dish"></i>
-        </div>
-        <div class="org-name">Badan Medcominfo</div>
-        <div class="org-role">Media & Informasi</div>
-    </div>
-
-    <div class="org-card">
-        <div class="org-avatar">
-            <i class="fa-solid fa-scale-balanced"></i>
-        </div>
-        <div class="org-name">Badan Kehormatan</div>
-        <div class="org-role">Etik & Kehormatan</div>
-    </div>
-
-    <div class="org-card">
-        <div class="org-avatar">
-            <i class="fa-solid fa-scroll"></i>
-        </div>
-        <div class="org-name">Badan Legislasi</div>
-        <div class="org-role">Legislasi & Regulasi</div>
-    </div>
-
-    <div class="org-card">
-        <div class="org-avatar">
+    <li class="nav-search-item">
+        <div class="nav-search">
             <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Cari...">
         </div>
-        <div class="org-name">Badan Pengawasan</div>
-        <div class="org-role">Monitoring & Evaluasi</div>
-    </div>
-
-    <div class="org-card">
-        <div class="org-avatar">
-            <i class="fa-solid fa-handshake"></i>
-        </div>
-        <div class="org-name">Badan Advokasi</div>
-        <div class="org-role">Aspirasi & Advokasi</div>
-    </div>
-
+    </li>
+    <li>
+        <a href="#aspirasi" class="nav-cta">Kirim Aspirasi</a>
+    </li>
+</ul>
+        <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#open-recruitment" onclick="toggleMenu()">Oprec</a> 
+    <a href="#tentang" onclick="toggleMenu()">Tentang</a>
+    <a href="#struktur" onclick="toggleMenu()">Struktur</a>
+    <a href="#proker" onclick="toggleMenu()">Program Kerja</a>
+    <a href="#berita" onclick="toggleMenu()">Berita</a>
+    <a href="#galeri" onclick="toggleMenu()">Galeri</a>
+    <a href="#aspirasi" onclick="toggleMenu()">Kirim Aspirasi</a>
 </div>
 
-</div>
-  </div>
-</section>
-
-<!-- PROGRAM KERJA -->
-<section id="proker">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">Agenda</div>
-      <h2 class="section-title">Program Kerja</h2>
-      <p class="section-desc">Program kerja DPM-KM Udinus periode 2025/2026.</p>
-      <div class="divider"></div>
-    </div>
-    <div class="proker-tabs">
-      <button class="tab-btn active" onclick="filterProker('semua',this)">Semua</button>
-      <button class="tab-btn" onclick="filterProker('legislasi',this)">Legislasi</button>
-      <button class="tab-btn" onclick="filterProker('pengawasan',this)">Pengawasan</button>
-      <button class="tab-btn" onclick="filterProker('advokasi',this)">Advokasi</button>
-    </div>
-    <div class="proker-grid" id="prokerGrid"></div>
-  </div>
-</section>
-
-<!-- BERITA -->
-<section id="berita">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">Informasi</div>
-      <h2 class="section-title">Berita &amp; Pengumuman</h2>
-      <div class="divider"></div>
-    </div>
-    <div class="news-grid">
-      <div class="news-featured">
-    <div class="news-featured-img">
-        <i class="fa-solid fa-file-signature"></i>
-        <div class="news-tag">Utama</div>
-    </div>
-
-    <div class="news-featured-body">
-        <div class="news-date">
-            <i class="fa-regular fa-calendar"></i> 2025
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-inner">
+            <div>
+                <div class="hero-badge fade-up fade-up-d1">Periode 2025 / 2026</div>
+                <h1 class="hero-title fade-up fade-up-d2">Suara Mahasiswa,<br /><em>Kekuatan</em> Bersama</h1>
+                <p class="hero-desc fade-up fade-up-d3">Dewan Perwakilan Mahasiswa – Keluarga Mahasiswa Udinus hadir sebagai wadah aspirasi, pengawas kebijakan, dan penggerak perubahan di lingkungan kampus.</p>
+                <div class="hero-btns fade-up fade-up-d3">
+                    <a href="#aspirasi" class="btn-primary">Kirim Aspirasi</a>
+                    <a href="#tentang" class="btn-outline">Pelajari Lebih Lanjut</a>
+                </div>
+                <div class="hero-stats fade-up fade-up-d3">
+                    <div class="stat-item"><div class="stat-num">39</div><div class="stat-lbl">Anggota Aktif</div></div>
+                    <div class="stat-item"><div class="stat-num">18</div><div class="stat-lbl">Program Kerja</div></div>
+                    <div class="stat-item"><div class="stat-num">9</div><div class="stat-lbl">Bidang</div></div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="assets/images/gavel-dpm.png" alt="Gavel DPM-KM" class="hero-gavel hero-parallax">
+            </div>
         </div>
+    </section>
 
-        <h3>Surat Keputusan Pemberhentian Anggota</h3>
+    <!-- ============================
+    OPEN RECRUITMENT
+    ============================ -->
+    <section id="open-recruitment">
+        <div class="bg-blob"></div>
+        <div class="bg-blob"></div>
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="section-header" style="color: white;">
+                <div class="section-tag" style="color: var(--accent-light);">Bergabunglah</div>
+                <h2 class="section-title" style="color: white;">Open Recruitment DPM-KM 2025/2026</h2>
+                <div class="divider" style="background: var(--accent);"></div>
+                <p style="color: rgba(255,255,255,0.8); max-width: 600px; margin: 1rem auto; font-size: 16px;">
+                    Kami mencari mahasiswa berdedikasi untuk menjadi bagian dari lembaga legislatif mahasiswa. Kembangkan potensi dan berkontribusi untuk perubahan!
+                </p>
+            </div>
 
-        <p>
-            DPM-KM Udinus menerbitkan Surat Keputusan resmi terkait
-            pemberhentian anggota sesuai prosedur dan ketentuan yang
-            berlaku dalam Undang-Undang Keluarga Mahasiswa Udinus.
-        </p>
-    </div>
-</div>
+            <div class="recruitment-grid">
+                <!-- Kartu 1: Posisi -->
+                <div class="recruit-card">
+                    <i class="fa-solid fa-users"></i>
+                    <h3>Posisi Tersedia</h3>
+                    <ul>
+                        <li>• Anggota Badan Legislasi</li>
+                        <li>• Anggota Badan Pengawasan</li>
+                        <li>• Anggota Badan Advokasi</li>
+                        <li>• Staf Media & Informasi</li>
+                    </ul>
+                </div>
 
-<div class="news-sidebar">
+                <!-- Kartu 2: Deadline -->
+                <div class="recruit-card">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <h3>Batas Pendaftaran</h3>
+                    <div class="deadline">10 Juli 2026</div>
+                    <p>Jangan lewatkan kesempatan!</p>
+                </div>
 
-    <div class="news-small">
-        <div class="news-small-icon">
-            <i class="fa-solid fa-clipboard-check"></i>
+                <!-- Kartu 3: Cara Daftar + Tombol -->
+                <div class="recruit-card">
+                    <i class="fa-solid fa-file-pen"></i>
+                    <h3>Cara Mendaftar</h3>
+                    <p style="opacity: 0.9; font-size: 0.95rem; line-height: 1.6;">Isi formulir online dan lampirkan CV & portofolio.</p>
+                    <button class="btn-recruit" onclick="openModal()">
+                        Daftar Sekarang
+                    </button>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div>
-            <h4>Berita Acara Pengawasan WEBINTER DPM KM</h4>
-            <div class="news-date">2025</div>
+    <!-- TENTANG -->
+    <section id="tentang">
+        <div class="container">
+            <div class="about-grid">
+                <div>
+                    <div class="about-img-box">
+                        <img src="assets/images/jumbotron.jpeg" alt="Tentang DPM-KM Udinus" />
+                        <div class="about-tag">Udinus 2025/2026</div>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <h2>Siapa Kami?</h2>
+                    <p>DPM-KM (Dewan Perwakilan Mahasiswa – Keluarga Mahasiswa) adalah lembaga legislatif tertinggi dalam struktur organisasi kemahasiswaan yang bertugas mewakili aspirasi seluruh mahasiswa.</p>
+                    <p>Kami berkomitmen menjadi jembatan antara mahasiswa dan pihak institusi, memastikan setiap suara didengar dan setiap kebijakan berpihak pada kepentingan bersama.</p>
+                    <div class="about-pillars">
+                        <div class="pillar">
+                            <div class="pillar-icon">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                            </div>
+                            <div>
+                                <div class="pillar-title">Legislasi</div>
+                                <div class="pillar-desc">Penyusunan regulasi kemahasiswaan</div>
+                            </div>
+                        </div>
+                        <div class="pillar">
+                            <div class="pillar-icon">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <div>
+                                <div class="pillar-title">Pengawasan</div>
+                                <div class="pillar-desc">Monitoring kinerja organisasi</div>
+                            </div>
+                        </div>
+                        <div class="pillar">
+                            <div class="pillar-icon">
+                                <i class="fa-solid fa-handshake"></i>
+                            </div>
+                            <div>
+                                <div class="pillar-title">Advokasi</div>
+                                <div class="pillar-desc">Pembelaan hak mahasiswa</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div class="news-small">
-        <div class="news-small-icon">
-            <i class="fa-solid fa-chart-column"></i>
+    <!-- VISI MISI -->
+    <section id="visimisi">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Landasan Kami</div>
+                <h2 class="section-title">Visi &amp; Misi</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="vm-grid">
+                <div class="vm-card visi">
+                    <div class="vm-label">Visi</div>
+                    <h3>Aspiratif, Inovatif, dan Proaktif untuk Kesejahteraan Mahasiswa</h3>
+                    <p class="vm-quote">"Mewujudkan DPM KM Udinus sebagai lembaga legislatif yang aspiratif, inovatif, dan proaktif untuk kesejahteraan mahasiswa."</p>
+                </div>
+                <div class="vm-card misi">
+                    <div class="vm-label">Misi</div>
+                    <h3>Langkah Nyata Kami</h3>
+                    <ul class="misi-list">
+                        <li>Mengoptimalkan fungsi dan peran aspirasi, pengawasan, serta legislasi yang berpihak pada kepentingan mahasiswa.</li>
+                        <li>Menciptakan ruang dialog yang aspiratif untuk menggali permasalahan mahasiswa.</li>
+                        <li>Menguatkan sinergi antar ormawa baik di internal maupun eksternal kampus.</li>
+                        <li>Membangun DPM KM yang progresif dan tanggung jawab dengan mengutamakan nilai kekeluargaan.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div>
-            <h4>Berita Acara Pengawasan Kegiatan KRBI</h4>
-            <div class="news-date">
-                Kompetisi Rencana Bisnis Inovasi
+    <!-- STRUKTUR -->
+    <section id="struktur">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Pengurus</div>
+                <h2 class="section-title">Struktur Organisasi</h2>
+                <p class="section-desc">Pengurus DPM-KM periode 2025/2026 yang berkomitmen melayani seluruh mahasiswa.</p>
+                <div class="divider"></div>
+            </div>
+            <div class="org-wrap">
+                <div class="org-card top">
+                    <div class="org-avatar">
+                        <i class="fa-solid fa-gavel"></i>
+                    </div>
+                    <div class="org-name">Ketua Umum</div>
+                    <div class="org-role">DPM-KM Udinus</div>
+                </div>
+                <div class="org-line"></div>
+                <div class="org-level level-2">
+                    <div class="org-card">
+                        <div class="org-avatar">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+                        <div class="org-name">Sekretaris Parlemen</div>
+                        <div class="org-role">Kesekretariatan</div>
+                    </div>
+                    <div class="org-card">
+                        <div class="org-avatar">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                        <div class="org-name">Divisi Humas &amp; Pengembangan</div>
+                        <div class="org-role">Humas &amp; SDM</div>
+                    </div>
+                    <div class="org-card">
+                        <div class="org-avatar">
+                            <i class="fa-solid fa-sack-dollar"></i>
+                        </div>
+                        <div class="org-name">Bendahara Parlemen</div>
+                        <div class="org-role">Keuangan</div>
+                    </div>
+                </div>
+                <div class="org-line"></div>
+                <div class="org-level level-3">
+                    <div class="org-card">
+                        <div class="org-avatar">
+                            <i class="fa-solid fa-satellite-dish"></i>
+                        </div>
+                        <div class="org-name">Badan Medcominfo</div>
+                        <div class="org-role">Media & Informasi</div>
+                    </div>
+                    <div class="org-card">
+                        <div class="org-avatar">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <div class="org-name">Badan Kehormatan</div>
+                        <div class="org-role">Etik & Kehormatan</div>
+                    </div>
+                    <div class="org-card">
+                        <div class="org-avatar">
+                            <i class="fa-solid fa-scroll"></i>
+                        </div>
+                        <div class="org-name">Badan Legislasi</div>
+                        <div class="org-role">Legislasi & Regulasi</div>
+                    </div>
+                    <div class="org-card">
+                        <div class="org-avatar">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <div class="org-name">Badan Pengawasan</div>
+                        <div class="org-role">Monitoring & Evaluasi</div>
+                    </div>
+                    <div class="org-card">
+                        <div class="org-avatar">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <div class="org-name">Badan Advokasi</div>
+                        <div class="org-role">Aspirasi & Advokasi</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM KERJA -->
+    <section id="proker">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Agenda</div>
+                <h2 class="section-title">Program Kerja</h2>
+                <p class="section-desc">Program kerja DPM-KM Udinus periode 2025/2026.</p>
+                <div class="divider"></div>
+            </div>
+            <div class="proker-tabs">
+                <button class="tab-btn active" onclick="filterProker('semua',this)">Semua</button>
+                <button class="tab-btn" onclick="filterProker('legislasi',this)">Legislasi</button>
+                <button class="tab-btn" onclick="filterProker('pengawasan',this)">Pengawasan</button>
+                <button class="tab-btn" onclick="filterProker('advokasi',this)">Advokasi</button>
+            </div>
+            <div class="proker-grid" id="prokerGrid"></div>
+        </div>
+    </section>
+
+    <!-- BERITA -->
+    <section id="berita">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Informasi</div>
+                <h2 class="section-title">Berita &amp; Pengumuman</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="news-grid">
+                <a href="https://dinus.ac.id/2024/04/mpm-km-udinus-gelar-sidang-semester-sahkan-biro-fakultas-kedokteran-hingga-lpjtt-dari-dpm-km-dan-bem-km/" target="_blank" class="news-link">
+                    <div class="news-featured">
+                        <div class="news-featured-img">
+                            <img src="assets/images/lpjtt.jpg" alt="LPJTT">
+                            <div class="news-tag">Utama</div>
+                        </div>
+                        <div class="news-featured-body">
+                            <div class="news-date">
+                                <i class="fa-regular fa-calendar"></i> 2 April 2024
+                            </div>
+                            <h3>LPJTT DPM-KM dan BEM-KM Udinus</h3>
+                            <p>Sidang semester dan Laporan Pertanggungjawaban Tengah Tahun (LPJTT) menjadi forum evaluasi serta pertanggungjawaban kinerja organisasi mahasiswa selama setengah periode kepengurusan.</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="news-sidebar">
+                    <a href="https://www.instagram.com/p/DYZuB-4EzDL/?igsh=OWdqcTI2ZmNycWs0" target="_blank" class="news-link">
+                        <div class="news-small">
+                            <div class="news-small-icon">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                            </div>
+                            <div>
+                                <h4>Pemberhentian Ketua Badan Legislasi</h4>
+                                <div class="news-date">Keputusan resmi DPM-KM Udinus</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/p/DZwB3JVk9pA/?igsh=Z3JibmwwYno4ZGZx" target="_blank" class="news-link">
+                        <div class="news-small">
+                            <div class="news-small-icon">
+                                <i class="fa-solid fa-laptop"></i>
+                            </div>
+                            <div>
+                                <h4>Pengawasan WEBINTER BEM-KM 2026</h4>
+                                <div class="news-date">Kegiatan Pengawasan</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/p/DZkSSM9k9z5/?igsh=YmFvcGtmY2N3bHpk" target="_blank" class="news-link">
+                        <div class="news-small">
+                            <div class="news-small-icon">
+                                <i class="fa-solid fa-scale-balanced"></i>
+                            </div>
+                            <div>
+                                <h4>Training Legislative Universitas (TLU)</h4>
+                                <div class="news-date">Peningkatan kapasitas legislatif mahasiswa</div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/p/DZwB3JVk9pA/?igsh=Z3JibmwwYno4ZGZx" target="_blank" class="news-link">
+                        <div class="news-small">
+                            <div class="news-small-icon">
+                                <i class="fa-solid fa-microphone"></i>
+                            </div>
+                            <div>
+                                <h4>Dialog Aspirasi Bersama Rektor 2026</h4>
+                                <div class="news-date">Forum penyampaian aspirasi mahasiswa</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERI -->
+    <section id="galeri">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Dokumentasi</div>
+                <h2 class="section-title">Galeri Kegiatan</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets/images/utama.jpeg" alt="Utama">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption"></div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/kcc.jpeg" alt="Kompetisi Cerdas Cermat">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Kompetisi Cerdas Cermat</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/tlu.jpeg" alt="TLU">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Training Legislative Universitas</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/rakor.jpeg" alt="Rapat Kerja DPM">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Rapat 100 Hari Kerja</div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/images/lpjtt.jpeg" alt="LPJTT">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">LPJTT DPM-KM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ASPIRASI -->
+    <section id="aspirasi">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Sampaikan</div>
+                <h2 class="section-title">Kirim Aspirasi Anda</h2>
+                <p class="section-desc">Setiap suara berharga. Sampaikan aspirasi, masukan, atau pengaduan Anda kepada kami.</p>
+                <div class="divider"></div>
+            </div>
+            <div class="aspirasi-grid">
+                <div class="aspirasi-form">
+                    <h3>Formulir Aspirasi</h3>
+                    <p>Isi formulir di bawah untuk menyampaikan aspirasi atau masukan Anda.</p>
+                    <div class="form-group">
+                        <label class="form-label">Nama Lengkap *</label>
+                        <input type="text" id="f-nama" class="form-input" placeholder="Masukkan nama lengkap Anda" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">NIM *</label>
+                        <input type="text" id="f-nim" class="form-input" placeholder="Contoh: A12.2024.12345" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Program Studi</label>
+                        <select id="f-prodi" class="form-select">
+                            <option>-- Pilih Program Studi --</option>
+                            <option>Teknik Informatika</option>
+                            <option>Sistem Informasi</option>
+                            <option>Desain Komunikasi Visual</option>
+                            <option>Ilmu Komunikasi</option>
+                            <option>Film &amp; Televisi</option>
+                            <option>Animasi</option>
+                            <option>Manajemen</option>
+                            <option>Akuntansi</option>
+                            <option>Bahasa Inggris</option>
+                            <option>Sastra Jepang</option>
+                            <option>Pengelolaan Perhotelan</option>
+                            <option>Kesehatan Masyarakat</option>
+                            <option>Rekam Medis</option>
+                            <option>Teknik Elektro</option>
+                            <option>Teknik Industri</option>
+                            <option>Teknik Biomedis</option>
+                            <option>Kedokteran</option>
+                            <option>Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Kategori Aspirasi *</label>
+                        <select id="f-kategori" class="form-select">
+                            <option>-- Pilih Kategori --</option>
+                            <option>Akademik &amp; Kurikulum</option>
+                            <option>Fasilitas Kampus</option>
+                            <option>Beasiswa &amp; Keuangan</option>
+                            <option>Organisasi Kemahasiswaan</option>
+                            <option>Kebijakan Kampus</option>
+                            <option>Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Isi Aspirasi *</label>
+                        <textarea id="f-isi" class="form-textarea" placeholder="Tuliskan aspirasi, saran, atau masukan Anda secara lengkap..."></textarea>
+                    </div>
+                    <button class="form-submit" id="submitBtn" onclick="submitAspirasi()">Kirim Aspirasi</button>
+                </div>
+                <div class="contact-list">
+                    <a href="mailto:candramawaabhiseka@gmail.com" class="contact-item contact-link">
+                        <div class="contact-item-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <div class="contact-item-title">Email Resmi</div>
+                            <div class="contact-item-val">candramawaabhiseka@gmail.com</div>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/6282211571483" target="_blank" class="contact-item contact-link">
+                        <div class="contact-item-icon">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <div class="contact-item-title">WhatsApp</div>
+                            <div class="contact-item-val">+62 822-1157-1483</div>
+                        </div>
+                    </a>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+                        <div>
+                            <div class="contact-item-title">Jam Layanan</div>
+                            <div class="contact-item-val">Senin – Jumat, 08.00 – 16.00 WIB</div>
+                        </div>
+                    </div>
+                    <div style="margin-top:1.5rem;">
+                        <div style="font-weight:600;font-size:14px;color:var(--primary);margin-bottom:10px;">Ikuti Kami</div>
+                        <div class="social-row">
+                            <a href="https://youtube.com" class="social-btn">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://wa.me/6282211571483?text=Halo%20DPM-KM%20Udinus" class="social-btn">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="https://www.instagram.com/dpmkmudinus?igsh=NWlidWQyeHo4ajl0" class="social-btn">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="mailto:candramawaabhiseka@gmail.com" class="social-btn">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <div class="nav-logo">
+                        <img src="assets/images/logo-dpm.jpeg" alt="Logo DPM-KM">
+                    </div>
+                    <div style="color:white;font-weight:700;font-size:16px;">DPM-KM Udinus<br/><span style="font-size:12px;font-weight:300;opacity:0.7;">Periode 2025/2026</span></div>
+                </div>
+                <p>Dewan Perwakilan Mahasiswa – Keluarga Mahasiswa Udinus adalah lembaga legislatif tertinggi kemahasiswaan yang mengawal aspirasi dan hak setiap mahasiswa.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigasi</h4>
+                <a href="#tentang">Tentang Kami</a>
+                <a href="#visimisi">Visi &amp; Misi</a>
+                <a href="#struktur">Struktur</a>
+                <a href="#proker">Program Kerja</a>
+            </div>
+            <div class="footer-col">
+                <h4>Informasi</h4>
+                <a href="#berita">Berita</a>
+                <a href="#galeri">Galeri</a>
+                <a href="#">Regulasi</a>
+                <a href="#">Dokumen Publik</a>
+            </div>
+            <div class="footer-col">
+                <h4>Layanan</h4>
+                <a href="#aspirasi">Kirim Aspirasi</a>
+                <a href="#">Pengaduan</a>
+                <a href="#">FAQ</a>
+                <a href="#">Kontak</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 DPM-KM Udinus. Hak cipta dilindungi.</span>
+            <span>All Rights Reserved &nbsp;|&nbsp; <a href="#">Kebijakan Privasi</a></span>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast">✅ Aspirasi berhasil dikirim! Kami akan segera menindaklanjuti.</div>
+
+    <!-- ============================
+    MODAL FORM PENDAFTARAN
+    ============================ -->
+    <div class="modal-overlay" id="recruitmentModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-file-pen"></i> Formulir Pendaftaran</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- GANTI src dengan link embed Google Form Anda -->
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfX_yXk1xX_YH2xQwP4XQ6fGqQ8qB5u3gVjE-dUj8P0yZxHjA/viewform?embedded=true"></iframe>
             </div>
         </div>
     </div>
 
-</div>
-</section>
+    <!-- ============================
+    ENHANCED CHATBOT
+    ============================ -->
 
-<!-- GALERI -->
-<section id="galeri">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">Dokumentasi</div>
-      <h2 class="section-title">Galeri Kegiatan</h2>
-      <div class="divider"></div>
-    </div>
-    <div class="gallery-grid">
+    <button class="chatbot-btn" id="chatToggle" onclick="toggleChat()" aria-label="Buka chatbot">
+        <i class="fa-solid fa-comments"></i>
+        <span class="badge-dot"></span>
+    </button>
 
-  <div class="gallery-item">
-    <img src="assets/images/utama.jpeg" alt="Utama">
-    <div class="gallery-overlay">
-      <div class="gallery-caption"></div>
-    </div>
-  </div>
-
-  <div class="gallery-item">
-    <img src="assets/images/kcc.jpeg" alt="Kompetisi Cerdas Cermat">
-    <div class="gallery-overlay">
-      <div class="gallery-caption">Kompetisi Cerdas Cermat</div>
-    </div>
-  </div>
-
-  <div class="gallery-item">
-    <img src="assets/images/tlu.jpeg" alt="TLU">
-    <div class="gallery-overlay">
-      <div class="gallery-caption">Training Legislative Universitas</div>
-    </div>
-  </div>
-
-  <div class="gallery-item">
-    <img src="assets/images/rakor.jpeg" alt="Rapat Kerja DPM">
-    <div class="gallery-overlay">
-      <div class="gallery-caption">Rapat 100 Hari Kerja</div>
-    </div>
-  </div>
-
-  <div class="gallery-item">
-    <img src="assets/images/lpjtt.jpeg" alt="LPJTT">
-    <div class="gallery-overlay">
-      <div class="gallery-caption">LPJTT DPM-KM</div>
-    </div>
-  </div>
-</div>
-  </div>
-</section>
-
-<!-- ASPIRASI -->
-<section id="aspirasi">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-tag">Sampaikan</div>
-      <h2 class="section-title">Kirim Aspirasi Anda</h2>
-      <p class="section-desc">Setiap suara berharga. Sampaikan aspirasi, masukan, atau pengaduan Anda kepada kami.</p>
-      <div class="divider"></div>
-    </div>
-    <div class="aspirasi-grid">
-      <div class="aspirasi-form">
-        <h3>Formulir Aspirasi</h3>
-        <p>Isi formulir di bawah untuk menyampaikan aspirasi atau masukan Anda.</p>
-        <div class="form-group">
-          <label class="form-label">Nama Lengkap *</label>
-          <input type="text" id="f-nama" class="form-input" placeholder="Masukkan nama lengkap Anda" />
+    <div class="chatbot-box" id="chatbot">
+        <!-- Header -->
+        <div class="chat-header" onclick="toggleChat()">
+            <div class="chat-avatar">
+                <i class="fa-solid fa-robot"></i>
+                <span class="status-dot"></span>
+            </div>
+            <div class="chat-info">
+                <div class="chat-name">DPM Assistant</div>
+                <div class="chat-status">
+                    <span class="status-indicator"></span> Online
+                </div>
+            </div>
+            <button class="chat-close" onclick="event.stopPropagation();toggleChat()" aria-label="Tutup chatbot">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
-        <div class="form-group">
-          <label class="form-label">NIM *</label>
-          <input type="text" id="f-nim" class="form-input" placeholder="Contoh: A12.2024.12345" />
+
+        <!-- Messages -->
+        <div class="chat-body" id="chatBody">
+            <!-- Bot welcome message -->
+            <div class="message bot">
+                Halo, saya DPM Assistant. Ada yang bisa saya bantu?
+                <span class="msg-time">Sekarang</span>
+            </div>
+
+            <!-- Quick reply chips (tanpa emoji) -->
+            <div class="quick-replies">
+                <button class="chip" onclick="quickReply('aspirasi')">Kirim Aspirasi</button>
+                <button class="chip" onclick="quickReply('proker')">Program Kerja</button>
+                <button class="chip" onclick="quickReply('kontak')">Kontak</button>
+                <button class="chip" onclick="quickReply('lpjtt')">LPJTT</button>
+            </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Program Studi</label>
-          <select id="f-prodi" class="form-select">
-            <option>-- Pilih Program Studi --</option>
-            <option>Teknik Informatika</option><option>Sistem Informasi</option>
-            <option>Desain Komunikasi Visual</option><option>Ilmu Komunikasi</option>
-            <option>Film &amp; Televisi</option><option>Animasi</option>
-            <option>Manajemen</option><option>Akuntansi</option>
-            <option>Bahasa Inggris</option><option>Sastra Jepang</option>
-            <option>Pengelolaan Perhotelan</option><option>Kesehatan Masyarakat</option>
-            <option>Rekam Medis</option><option>Teknik Elektro</option>
-            <option>Teknik Industri</option><option>Teknik Biomedis</option>
-            <option>Kedokteran</option><option>Lainnya</option>
-          </select>
+
+        <!-- Footer -->
+        <div class="chat-footer">
+            <div class="input-wrap">
+                <input type="text" id="chatInput" placeholder="Tanyakan sesuatu..." />
+                <button class="emoji-btn" onclick="addEmoji()" aria-label="Emoji">
+                    <i class="fa-regular fa-face-smile"></i>
+                </button>
+            </div>
+            <button class="send-btn" id="sendBtn" onclick="sendMessage()" aria-label="Kirim">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
         </div>
-        <div class="form-group">
-          <label class="form-label">Kategori Aspirasi *</label>
-          <select id="f-kategori" class="form-select">
-            <option>-- Pilih Kategori --</option>
-            <option>Akademik &amp; Kurikulum</option><option>Fasilitas Kampus</option>
-            <option>Beasiswa &amp; Keuangan</option><option>Organisasi Kemahasiswaan</option>
-            <option>Kebijakan Kampus</option><option>Lainnya</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Isi Aspirasi *</label>
-          <textarea id="f-isi" class="form-textarea" placeholder="Tuliskan aspirasi, saran, atau masukan Anda secara lengkap..."></textarea>
-        </div>
-        <button class="form-submit" id="submitBtn" onclick="submitAspirasi()">Kirim Aspirasi</button>
-      </div>
-      <div class="contact-list">
-
-  <div class="contact-item">
-    <div class="contact-item-icon">
-      <i class="fa-solid fa-envelope"></i>
-    </div>
-    <div>
-      <div class="contact-item-title">Email Resmi</div>
-      <div class="contact-item-val">
-        candramawaabhiseka@gmail.com
-      </div>
-    </div>
-  </div>
-
-  <div class="contact-item">
-    <div class="contact-item-icon">
-      <i class="fa-brands fa-whatsapp"></i>
-    </div>
-    <div>
-      <div class="contact-item-title">WhatsApp</div>
-      <div class="contact-item-val">
-        +62 822-1157-1483
-      </div>
-    </div>
-  </div>
-
-  <div class="contact-item">
-    <div class="contact-item-icon">
-      <i class="fa-regular fa-clock"></i>
-    </div>
-    <div>
-      <div class="contact-item-title">Jam Layanan</div>
-      <div class="contact-item-val">
-        Senin – Jumat, 08.00 – 16.00 WIB
-      </div>
     </div>
 
-</div>
-        <div style="margin-top:1.5rem;">
-          <div style="font-weight:600;font-size:14px;color:var(--primary);margin-bottom:10px;">Ikuti Kami</div>
-          <div class="social-row">
-            <a href="https://youtube.com" class="social-btn">
-                <i class="fab fa-youtube"></i>
-            </a>
+    <script>
+        // ============================================
+        // EXISTING SITE SCRIPTS
+        // ============================================
 
-            <a href="https://wa.me/6282211571483?text=Halo%20DPM-KM%20Udinus"class="social-btn">
-                <i class="fab fa-whatsapp"></i>
-            </a>
+        const gavel = document.querySelector('.hero-parallax');
+        let mouseX = 0,
+            mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (window.innerWidth / 2 - e.clientX) / 40;
+            mouseY = (window.innerHeight / 2 - e.clientY) / 40;
+        });
 
-            <a href="https://www.instagram.com/dpmkmudinus?igsh=NWlidWQyeHo4ajl0" class="social-btn">
-                <i class="fab fa-instagram"></i>
-            </a>
+        function animateParallax() {
+            const scroll = window.scrollY * 0.15;
+            if (gavel) {
+                gavel.style.transform = `translate(${mouseX}px, ${mouseY + scroll}px)`;
+            }
+            requestAnimationFrame(animateParallax);
+        }
+        animateParallax();
 
-            <a href="mailto:chandramawaabhiseka@gmail.com" class="social-btn">
-                <i class="fas fa-envelope"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxfCT-NMjYGbOd6X7JOiaGmS9bksoyOAfQ7WkDRNYThj5Bx5PcA5n1bgNeOYwshC_MuDw/exec";
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div style="display:flex;align-items:center;gap:12px;">
-        <div class="nav-logo">
-          <img src="assets/images/logo-dpm.jpeg" alt="Logo DPM-KM">
-        </div>
-        <div style="color:white;font-weight:700;font-size:16px;">DPM-KM Udinus<br/><span style="font-size:12px;font-weight:300;opacity:0.7;">Periode 2025/2026</span></div>
-      </div>
-      <p>Dewan Perwakilan Mahasiswa – Keluarga Mahasiswa Udinus adalah lembaga legislatif tertinggi kemahasiswaan yang mengawal aspirasi dan hak setiap mahasiswa.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Navigasi</h4>
-      <a href="#tentang">Tentang Kami</a>
-      <a href="#visimisi">Visi &amp; Misi</a>
-      <a href="#struktur">Struktur</a>
-      <a href="#proker">Program Kerja</a>
-    </div>
-    <div class="footer-col">
-      <h4>Informasi</h4>
-      <a href="#berita">Berita</a>
-      <a href="#galeri">Galeri</a>
-      <a href="#">Regulasi</a>
-      <a href="#">Dokumen Publik</a>
-    </div>
-    <div class="footer-col">
-      <h4>Layanan</h4>
-      <a href="#aspirasi">Kirim Aspirasi</a>
-      <a href="#">Pengaduan</a>
-      <a href="#">FAQ</a>
-      <a href="#">Kontak</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2025 DPM-KM Udinus. Hak cipta dilindungi.</span>
-    <span>All Rights Reserved &nbsp;|&nbsp; <a href="#">Kebijakan Privasi</a></span>
-  </div>
-</footer>
+        const prokerData = [{
+            nama: "PROLEGUN",
+            komisi: "Badan Legislasi",
+            icon: '<i class="fa-solid fa-scale-balanced"></i>',
+            kategori: "legislasi",
+            desc: "Program Legislative Universitas — RKT DPM KM Udinus yang bertujuan membahas dan menetapkan kebijakan strategis terkait Undang-Undang Keluarga Mahasiswa (UU KM).",
+            badge: "badge-legislasi",
+            label: "Legislasi"
+        }, {
+            nama: "RDP",
+            komisi: "Badan Legislasi",
+            icon: '<i class="fa-solid fa-microphone"></i>',
+            kategori: "legislasi",
+            desc: "Rapat Dengar Pendapat — forum partisipatif bagi seluruh perwakilan ORMAWA Udinus untuk menyampaikan aspirasi, kritik dan saran terkait Undang-Undang Keluarga Mahasiswa (UU KM).",
+            badge: "badge-legislasi",
+            label: "Legislasi"
+        }, {
+            nama: "RAKOR DPM KM",
+            komisi: "Badan Pengawasan",
+            icon: '<i class="fa-solid fa-clipboard-list"></i>',
+            kategori: "pengawasan",
+            desc: "Kegiatan Rapat Koordinasi antara DPM KM menjadi awal penyamaan visi dalam menjalankan pengawasan proker selama satu periode.",
+            badge: "badge-pengawasan",
+            label: "Pengawasan"
+        }, {
+            nama: "LPJTT DPM KM",
+            komisi: "Badan Pengawasan",
+            icon: '<i class="fa-solid fa-magnifying-glass"></i>',
+            kategori: "pengawasan",
+            desc: "Laporan Pertanggungjawaban Tengah Tahun merupakan forum pelaporan dan evaluasi proker DPM KM selama setengah periode.",
+            badge: "badge-pengawasan",
+            label: "Pengawasan"
+        }, {
+            nama: "RESES",
+            komisi: "Badan Advokasi",
+            icon: '<i class="fa-solid fa-bullhorn"></i>',
+            kategori: "advokasi",
+            desc: "Kegiatan ini menjadi ruang strategis untuk menyerap aspirasi, menjaring proker, dan menguatkan lembaga legislatif mahasiswa.",
+            badge: "badge-advokasi",
+            label: "Advokasi"
+        }, {
+            nama: "Dialog Aspirasi",
+            komisi: "Badan Advokasi",
+            icon: '<i class="fa-solid fa-comments"></i>',
+            kategori: "advokasi",
+            desc: "Wadah komunikasi antara mahasiswa dan pihak birokrasi kampus untuk menyampaikan aspirasi, kritik, dan saran.",
+            badge: "badge-advokasi",
+            label: "Advokasi"
+        }];
 
-<div class="toast" id="toast">✅ Aspirasi berhasil dikirim! Kami akan segera menindaklanjuti.</div>
+        function renderProker(filter = 'semua') {
+            const grid = document.getElementById('prokerGrid');
+            const data = filter === 'semua' ? prokerData : prokerData.filter(p => p.kategori === filter);
+            grid.innerHTML = data.map(p => `
+                    <div class="proker-card">
+                        <div class="proker-header">
+                            <div class="proker-icon">${p.icon}</div>
+                            <div><div class="proker-name">${p.nama}</div><div class="proker-komisi">${p.komisi}</div></div>
+                        </div>
+                        <div class="proker-body">
+                            <p class="proker-desc">${p.desc}</p>
+                            <div class="proker-meta"><span class="proker-badge ${p.badge}">${p.label}</span></div>
+                        </div>
+                    </div>
+                `).join('');
+            document.querySelectorAll('.proker-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 50);
+            });
+        }
+        renderProker();
 
-<script>
-  const gavel =
-document.querySelector('.hero-parallax');
+        function filterProker(kat, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderProker(kat);
+        }
 
-let mouseX = 0;
-let mouseY = 0;
+        async function submitAspirasi() {
+            const nama = document.getElementById('f-nama').value.trim();
+            const nim = document.getElementById('f-nim').value.trim();
+            const prodi = document.getElementById('f-prodi').value;
+            const kategori = document.getElementById('f-kategori').value;
+            const isi = document.getElementById('f-isi').value.trim();
+            if (!nama || !nim || !isi || kategori === '-- Pilih Kategori --') {
+                alert('⚠️ Harap isi semua field yang wajib diisi (Nama, NIM, Kategori, dan Isi Aspirasi).');
+                return;
+            }
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = '⏳ Mengirim...';
+            const payload = { nama, nim, prodi, kategori, isi, waktu: new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' }) };
+            try {
+                await fetch(APPS_SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload) });
+                ['f-nama', 'f-nim', 'f-isi'].forEach(id => document.getElementById(id).value = '');
+                document.getElementById('f-prodi').selectedIndex = 0;
+                document.getElementById('f-kategori').selectedIndex = 0;
+                const t = document.getElementById('toast');
+                t.classList.add('show');
+                setTimeout(() => t.classList.remove('show'), 5000);
+            } catch (e) {
+                alert('❌ Gagal mengirim. Periksa koneksi internet Anda.');
+            }
+            btn.disabled = false;
+            btn.textContent = 'Kirim Aspirasi';
+        }
 
-document.addEventListener('mousemove',(e)=>{
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        }
 
-    mouseX =
-        (window.innerWidth / 2 - e.clientX) / 40;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (nav) {
+                nav.style.background = window.scrollY > 50 ? 'rgba(26,58,92,0.99)' : 'rgba(26,58,92,0.97)';
+            }
+        });
 
-    mouseY =
-        (window.innerHeight / 2 - e.clientY) / 40;
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.opacity = '1';
+                    e.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.news-small,.contact-item,.pillar,.vm-card,.org-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            obs.observe(el);
+        });
 
-});
+        const searchInput = document.getElementById("searchInput");
+        if (searchInput) {
+            searchInput.addEventListener("keypress", function(e) {
+                if (e.key === "Enter") {
+                    const keyword = this.value.toLowerCase();
+                    const sections = document.querySelectorAll("section");
+                    let found = false;
+                    sections.forEach(section => {
+                        if (section.innerText.toLowerCase().includes(keyword) && !found) {
+                            section.scrollIntoView({ behavior: "smooth" });
+                            found = true;
+                        }
+                    });
+                    if (!found) {
+                        alert("Data tidak ditemukan.");
+                    }
+                }
+            });
+        }
 
-function animateParallax(){
+        // ============================================
+        // MODAL SCRIPTS
+        // ============================================
 
-    const scroll =
-        window.scrollY * 0.15;
+        function openModal() {
+            document.getElementById('recruitmentModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
 
-    gavel.style.transform =
-        `translate(${mouseX}px, ${
-            mouseY + scroll
-        }px)`;
+        function closeModal() {
+            document.getElementById('recruitmentModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-    requestAnimationFrame(
-        animateParallax
-    );
-}
+        // Tutup modal jika klik di luar area putih
+        document.getElementById('recruitmentModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
 
-animateParallax();
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxfCT-NMjYGbOd6X7JOiaGmS9bksoyOAfQ7WkDRNYThj5Bx5PcA5n1bgNeOYwshC_MuDw/exec";
+        // Tutup dengan tombol ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
 
-  const prokerData = [
-  {
-    nama:"PROLEGUN",
-    komisi:"Badan Legislasi",
-    icon:'<i class="fa-solid fa-scale-balanced"></i>',
-    kategori:"legislasi",
-    desc:"Program Legislative Universitas — RKT DPM KM Udinus yang bertujuan membahas dan menetapkan kebijakan strategis terkait Undang-Undang Keluarga Mahasiswa (UU KM).",
-    badge:"badge-legislasi",
-    label:"Legislasi"
-  },
-  {
-    nama:"RDP",
-    komisi:"Badan Legislasi",
-    icon:'<i class="fa-solid fa-microphone"></i>',
-    kategori:"legislasi",
-    desc:"Rapat Dengar Pendapat — forum partisipatif bagi seluruh perwakilan ORMAWA Udinus untuk menyampaikan aspirasi, kritik dan saran terkait Undang-Undang Keluarga Mahasiswa (UU KM).",
-    badge:"badge-legislasi",
-    label:"Legislasi"
-  },
-  {
-    nama:"RAKER DPM KM",
-    komisi:"Badan Pengawasan",
-    icon:'<i class="fa-solid fa-clipboard-list"></i>',
-    kategori:"pengawasan",
-    desc:"Kegiatan Rapat Koordinasi antara DPM KM menjadi awal penyamaan visi dalam menjalankan pengawasan proker selama satu periode.",
-    badge:"badge-pengawasan",
-    label:"Pengawasan"
-  },
-  {
-    nama:"LPJTT DPM KM",
-    komisi:"Badan Pengawasan",
-    icon:'<i class="fa-solid fa-magnifying-glass"></i>',
-    kategori:"pengawasan",
-    desc:"Laporan Pertanggungjawaban Tengah Tahun merupakan forum pelaporan dan evaluasi proker DPM KM selama setengah periode.",
-    badge:"badge-pengawasan",
-    label:"Pengawasan"
-  },
-  {
-    nama:"RESES",
-    komisi:"Badan Advokasi",
-    icon:'<i class="fa-solid fa-bullhorn"></i>',
-    kategori:"advokasi",
-    desc:"Kegiatan ini menjadi ruang strategis untuk menyerap aspirasi, menjaring proker, dan menguatkan lembaga legislatif mahasiswa.",
-    badge:"badge-advokasi",
-    label:"Advokasi"
-  },
-  {
-    nama:"Dialog Aspirasi",
-    komisi:"Badan Advokasi",
-    icon:'<i class="fa-solid fa-comments"></i>',
-    kategori:"advokasi",
-    desc:"Wadah komunikasi antara mahasiswa dan pihak birokrasi kampus untuk menyampaikan aspirasi, kritik, dan saran.",
-    badge:"badge-advokasi",
-    label:"Advokasi"
-  }
-];
+        // ============================================
+        // ENHANCED CHATBOT SCRIPTS (tanpa emoji)
+        // ============================================
 
-  function renderProker(filter='semua') {
-    const grid = document.getElementById('prokerGrid');
-    const data = filter === 'semua' ? prokerData : prokerData.filter(p => p.kategori === filter);
-    grid.innerHTML = data.map(p => `
-      <div class="proker-card">
-        <div class="proker-header">
-          <div class="proker-icon">${p.icon}</div>
-          <div><div class="proker-name">${p.nama}</div><div class="proker-komisi">${p.komisi}</div></div>
-        </div>
-        <div class="proker-body">
-          <p class="proker-desc">${p.desc}</p>
-          <div class="proker-meta"><span class="proker-badge ${p.badge}">${p.label}</span></div>
-        </div>
-      </div>`).join('');
-    document.querySelectorAll('.proker-card').forEach(el => {
-      el.style.opacity='0'; el.style.transform='translateY(20px)';
-      el.style.transition='opacity 0.4s ease, transform 0.4s ease';
-      setTimeout(() => { el.style.opacity='1'; el.style.transform='translateY(0)'; }, 50);
-    });
-  }
-  renderProker();
+        let isTyping = false;
 
-  function filterProker(kat, btn) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderProker(kat);
-  }
+        function toggleChat() {
+            const box = document.getElementById('chatbot');
+            box.classList.toggle('open');
+            if (box.classList.contains('open')) {
+                setTimeout(() => {
+                    const body = document.getElementById('chatBody');
+                    body.scrollTop = body.scrollHeight;
+                }, 100);
+                setTimeout(() => {
+                    document.getElementById('chatInput').focus();
+                }, 200);
+            }
+        }
 
-  async function submitAspirasi() {
-    const nama=document.getElementById('f-nama').value.trim();
-    const nim=document.getElementById('f-nim').value.trim();
-    const prodi=document.getElementById('f-prodi').value;
-    const kategori=document.getElementById('f-kategori').value;
-    const isi=document.getElementById('f-isi').value.trim();
-    if (!nama||!nim||!isi||kategori==='-- Pilih Kategori --') {
-      alert('⚠️ Harap isi semua field yang wajib diisi (Nama, NIM, Kategori, dan Isi Aspirasi).'); return;
-    }
-    const btn=document.getElementById('submitBtn');
-    btn.disabled=true; btn.textContent='⏳ Mengirim...';
-    const payload={nama,nim,prodi,kategori,isi,waktu:new Date().toLocaleString('id-ID',{timeZone:'Asia/Jakarta'})};
-    try {
-      await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-      ['f-nama','f-nim','f-isi'].forEach(id=>document.getElementById(id).value='');
-      document.getElementById('f-prodi').selectedIndex=0;
-      document.getElementById('f-kategori').selectedIndex=0;
-      const t=document.getElementById('toast'); t.classList.add('show');
-      setTimeout(()=>t.classList.remove('show'),5000);
-    } catch(e) { alert('❌ Gagal mengirim. Periksa koneksi internet Anda.'); }
-    btn.disabled=false; btn.textContent='Kirim Aspirasi';
-  }
+        function getTime() {
+            const now = new Date();
+            return now.getHours().toString().padStart(2, '0') + ':' +
+                now.getMinutes().toString().padStart(2, '0');
+        }
 
-  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
+        function addMessage(type, text, time) {
+            const body = document.getElementById('chatBody');
+            const div = document.createElement('div');
+            div.className = `message ${type}`;
+            div.innerHTML = `${text}<span class="msg-time">${time || getTime()}</span>`;
+            body.appendChild(div);
+            body.scrollTop = body.scrollHeight;
+            return div;
+        }
 
-  window.addEventListener('scroll',()=>{
-    document.querySelector('nav').style.background=window.scrollY>50?'rgba(26,58,92,0.99)':'rgba(26,58,92,0.97)';
-  });
+        function showTyping() {
+            if (isTyping) return;
+            isTyping = true;
+            const body = document.getElementById('chatBody');
+            const div = document.createElement('div');
+            div.className = 'typing-indicator';
+            div.id = 'typingIndicator';
+            div.innerHTML = '<span></span><span></span><span></span>';
+            body.appendChild(div);
+            body.scrollTop = body.scrollHeight;
+        }
 
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{ if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';} });
-  },{threshold:0.1});
-  document.querySelectorAll('.news-small,.contact-item,.pillar,.vm-card,.org-card').forEach(el=>{
-    el.style.opacity='0'; el.style.transform='translateY(20px)';
-    el.style.transition='opacity 0.5s ease, transform 0.5s ease';
-    obs.observe(el);
-  });
-</script>
+        function hideTyping() {
+            const el = document.getElementById('typingIndicator');
+            if (el) el.remove();
+            isTyping = false;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const btn = document.getElementById('sendBtn');
+            btn.disabled = true;
+
+            addMessage('user', text);
+            input.value = '';
+            input.focus();
+
+            showTyping();
+
+            const lower = text.toLowerCase();
+            let reply = 'Maaf, saya belum memahami pertanyaan tersebut.';
+
+            if (lower.includes('aspirasi') || lower.includes('masukan') || lower.includes('keluhan') || lower.includes(
+                'pengaduan')) {
+                reply = 'Anda dapat mengirimkan aspirasi atau keluhan melalui menu Kirim Aspirasi di atas, atau klik tombol Kirim Aspirasi di bawah.';
+            } else if (lower.includes('proker') || lower.includes('program') || lower.includes('kerja') || lower.includes(
+                    'agenda')) {
+                reply = 'Program kerja DPM-KM dapat dilihat pada menu Program Kerja. Terdapat 6 program utama di bidang legislasi, pengawasan, dan advokasi.';
+            } else if (lower.includes('ketua') || lower.includes('pengurus') || lower.includes('struktur') || lower.includes(
+                    'organisasi') || lower.includes('anggota')) {
+                reply = 'Informasi struktur organisasi dan pengurus DPM-KM dapat dilihat pada menu Struktur. Kami memiliki 11 posisi kepengurusan.';
+            } else if (lower.includes('kontak') || lower.includes('hubungi') || lower.includes('telepon') || lower.includes(
+                    'wa') || lower.includes('whatsapp') || lower.includes('email')) {
+                reply = 'Hubungi kami melalui:\n- WhatsApp: +62 822-1157-1483\n- Email: candramawaabhiseka@gmail.com\n- Jam layanan: Senin–Jumat, 08.00–16.00 WIB';
+            } else if (lower.includes('lpjtt') || lower.includes('laporan') || lower.includes('pertanggungjawaban') ||
+                lower.includes('tengah tahun')) {
+                reply = 'LPJTT (Laporan Pertanggungjawaban Tengah Tahun) adalah forum evaluasi kinerja DPM-KM selama setengah periode. Lihat berita utama di halaman ini.';
+            } else if (lower.includes('berita') || lower.includes('pengumuman') || lower.includes('informasi')) {
+                reply = 'Berita dan pengumuman terbaru dapat dilihat pada menu Berita & Pengumuman.';
+            } else if (lower.includes('visi') || lower.includes('misi') || lower.includes('tujuan')) {
+                reply = 'Visi DPM-KM: "Mewujudkan DPM KM Udinus sebagai lembaga legislatif yang aspiratif, inovatif, dan proaktif untuk kesejahteraan mahasiswa."';
+            } else if (lower.includes('halo') || lower.includes('hai') || lower.includes('hi') || lower.includes('hey') ||
+                lower.includes('hello')) {
+                reply = 'Halo juga! Senang bisa berbicara dengan Anda. Ada yang bisa saya bantu?';
+            } else if (lower.includes('terima kasih') || lower.includes('makasih') || lower.includes('thanks')) {
+                reply = 'Sama-sama! Senang bisa membantu. Jika ada pertanyaan lain, jangan ragu untuk bertanya.';
+            } else if (lower.includes('tentang') || lower.includes('dpm') || lower.includes('km') || lower.includes(
+                'udinus')) {
+                reply = 'DPM-KM Udinus adalah Dewan Perwakilan Mahasiswa – Keluarga Mahasiswa Universitas Dian Nuswantoro. Kami adalah lembaga legislatif tertinggi kemahasiswaan yang mengawal aspirasi dan hak setiap mahasiswa.';
+            } else if (lower.includes('daftar') || lower.includes('pendaftaran') || lower.includes('recruitment') ||
+                lower.includes('open rec')) {
+                reply = 'Untuk pendaftaran Open Recruitment DPM-KM, silakan klik tombol Daftar Sekarang di bagian Open Recruitment di atas halaman ini.';
+            }
+
+            const delay = 400 + Math.random() * 600;
+            setTimeout(() => {
+                hideTyping();
+                addMessage('bot', reply);
+                btn.disabled = false;
+
+                const body = document.getElementById('chatBody');
+                const existingChips = body.querySelector('.quick-replies');
+                if (!existingChips) {
+                    const chips = document.createElement('div');
+                    chips.className = 'quick-replies';
+                    chips.innerHTML = `
+                            <button class="chip" onclick="quickReply('aspirasi')">Kirim Aspirasi</button>
+                            <button class="chip" onclick="quickReply('proker')">Program Kerja</button>
+                            <button class="chip" onclick="quickReply('kontak')">Kontak</button>
+                            <button class="chip" onclick="quickReply('lpjtt')">LPJTT</button>
+                        `;
+                    body.appendChild(chips);
+                    body.scrollTop = body.scrollHeight;
+                }
+            }, delay);
+        }
+
+        function quickReply(action) {
+            const input = document.getElementById('chatInput');
+            let msg = '';
+            if (action === 'aspirasi') msg = 'Saya ingin mengirim aspirasi';
+            else if (action === 'proker') msg = 'Tunjukkan program kerja';
+            else if (action === 'kontak') msg = 'Bagaimana cara menghubungi DPM?';
+            else if (action === 'lpjtt') msg = 'Apa itu LPJTT?';
+            if (msg) {
+                input.value = msg;
+                sendMessage();
+            }
+        }
+
+        function addEmoji() {
+            const input = document.getElementById('chatInput');
+            const start = input.selectionStart;
+            const end = input.selectionEnd;
+            const emoji = '😊';
+            input.value = input.value.substring(0, start) + emoji + input.value.substring(end);
+            input.focus();
+            input.selectionStart = input.selectionEnd = start + emoji.length;
+        }
+
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const box = document.getElementById('chatbot');
+                if (box.classList.contains('open')) {
+                    box.classList.remove('open');
+                }
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            const box = document.getElementById('chatbot');
+            const btn = document.getElementById('chatToggle');
+            if (box.classList.contains('open') &&
+                !box.contains(e.target) &&
+                !btn.contains(e.target)) {
+                box.classList.remove('open');
+            }
+        });
+
+        console.log('✅ DPM Assistant chatbot siap!');
+    </script>
 </body>
 </html>
